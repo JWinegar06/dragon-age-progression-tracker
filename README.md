@@ -48,36 +48,6 @@ The app lets users create an account or sign in, then save and manage their own 
 
 ---
 
-## Project Structure
-
-dragon-age-progression-tracker/
-├── app/
-│   ├── api/
-│   │   ├── entries/
-│   │   │   ├── route.js
-│   │   │   └── [id]/
-│   │   │       └── route.js
-│   │   └── auth/
-│   │       └── session/route.js
-│   ├── login/
-│   ├── signup/
-│   ├── dashboard/
-│   ├── layout.js
-│   └── page.js
-├── components/
-├── lib/
-│   ├── firebase.js
-│   ├── auth.js
-│   └── firestore.js
-├── public/
-├── styles/
-├── .env.local
-├── package.json
-└── README.md
-
----
-
-```
 ### Dependencies Used
 
 ### Main Dependencies
@@ -158,25 +128,6 @@ If you are not logged in and try to visit a restricted page, the app should redi
 - Confirm theme colors change correctly on desktop and mobile
 
 ---
-
-## Firestore Security Rules
-Use rules similar to these so users can only access their own data:
-
-```js
-rules_version = '2';
-
-service cloud.firestore {
-  match /databases/{database}/documents {
-    match /progress/{document} {
-      allow read, write: if request.auth != null
-        && request.auth.uid == resource.data.userId;
-      allow create: if request.auth != null
-        && request.auth.uid == request.resource.data.userId;
-    }
-  }
-}
-
-```
 
 ## Future Improvements
 - Charts for completion stats
